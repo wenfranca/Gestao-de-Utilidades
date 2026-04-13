@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gestão de Ocorrências — Utilidades | Mart Minas</title>
 <meta name="author" content="Wendell França">
@@ -15,6 +16,7 @@
   --energia:#F5A623;--gas:#FF6B6B;--agua:#4DB8FF;--acc:#00D67A;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+a[x-apple-data-detectors],a[href^="tel"]:not(.tel-link){color:inherit!important;text-decoration:none!important;pointer-events:none}
 html,body{height:100%;overflow:hidden}
 body{font-family:'Open Sans',sans-serif;background:linear-gradient(145deg,#071428 0%,#0A1F3A 30%,#0D3040 55%,#0F4535 75%,#0E5030 100%);color:#fff;height:100vh;overflow:hidden;background-attachment:fixed;display:flex;align-items:stretch}
 
@@ -406,20 +408,20 @@ window.selL=function selL(num){
 
   if(util==='energia'){
     h+=`<div class="c-grid">
-      <div class="ib ie"><div class="i-lbl">Concessionária</div><div class="i-val">${(loja.conc_energia||'—').toUpperCase()}</div><div class="i-tel" style="color:var(--energia)"><a href="tel:${(loja.tel_energia||'').replace(/[^0-9+]/g,'')}" style="color:inherit;text-decoration:none">${loja.tel_energia||'—'}</a></div></div>
-      <div class="ib ie"><div class="i-lbl">Nº de Instalação</div><div class="i-val">${loja.inst_energia||'—'}</div><div class="i-sub">Informe ao ligar</div></div>
-      <div class="ib ie"><div class="i-lbl">Unidade Consumidora</div><div class="i-val">${loja.uc_energia||'—'}</div></div>
+      <div class="ib ie"><div class="i-lbl">Concessionária</div><div class="i-val">${(loja.conc_energia||'—').toUpperCase()}</div><div class="i-tel" style="color:var(--energia)"><a href="tel:${(loja.tel_energia||'').replace(/[^0-9+]/g,'')}" class="tel-link" style="color:inherit;text-decoration:none">${loja.tel_energia||'—'}</a></div></div>
+      <div class="ib ie"><div class="i-lbl">Nº de Instalação</div><div class="i-val" style="-webkit-user-select:text;user-select:text" x-apple-data-detectors="false">${loja.inst_energia||'—'}</div><div class="i-sub">Informe ao ligar</div></div>
+      <div class="ib ie"><div class="i-lbl">Unidade Consumidora</div><div class="i-val" style="-webkit-user-select:text;user-select:text" x-apple-data-detectors="false">${loja.uc_energia||'—'}</div></div>
     </div>`;
     if(loja.conc_energia==='CEMIG'){
       h+=`<div class="cemig-box"><h4>📱 Gerência CEMIG — WhatsApp</h4>
-        <div class="c-row">☀️&nbsp;<div><div class="cr-lbl">Plantão Gerência Comercial (diurno)</div><strong><a href="tel:+5531999740015" style="color:inherit;text-decoration:none">+55 31 99974-0015</a></strong></div></div>
-        <div class="c-row">🌙&nbsp;<div><div class="cr-lbl">Plantão Relacionamento Noturno</div><strong><a href="tel:+5531995617407" style="color:inherit;text-decoration:none">+55 31 99561-7407</a></strong></div></div>
+        <div class="c-row">☀️&nbsp;<div><div class="cr-lbl">Plantão Gerência Comercial (diurno)</div><strong><a href="https://wa.me/5531999740015" class="tel-link" style="color:inherit;text-decoration:none">+55 31 99974-0015</a></strong></div></div>
+        <div class="c-row">🌙&nbsp;<div><div class="cr-lbl">Plantão Relacionamento Noturno</div><strong><a href="https://wa.me/5531995617407" class="tel-link" style="color:inherit;text-decoration:none">+55 31 99561-7407</a></strong></div></div>
         <div class="cemig-msg">Mensagem: <span class="mono">${loja.filial} · Mart Minas · [Protocolo] / N° Instalação ${loja.inst_energia} ou Unidade: ${loja.uc_energia}</span></div>
       </div>`;
     }
     if(ocId==='gerador'){
       h+=`<div class="cemig-box" style="border-color:rgba(245,166,35,.4);background:rgba(245,166,35,.08)"><h4 style="color:#F5A623">🔧 Responsável pelo Gerador</h4>
-        <div class="c-row">📞&nbsp;<div><div class="cr-lbl">Paiva — Manutenção de Geradores</div><strong><a href="tel:+5531999697764" style="color:inherit;text-decoration:none">+55 31 99969-7764</a></strong></div></div>
+        <div class="c-row">📞&nbsp;<div><div class="cr-lbl">Paiva — Manutenção de Geradores</div><strong><a href="https://wa.me/5531999697764" class="tel-link" style="color:inherit;text-decoration:none">+55 31 99969-7764</a></strong></div></div>
       </div>`;
     }
   }
@@ -451,7 +453,7 @@ window.selL=function selL(num){
       <div class="ib ig">
         <div class="i-lbl">Fornecedor</div>
         <div class="i-val">${tg?loja.forn_gas.toUpperCase():'NÃO CADASTRADO'}</div>
-        ${tg?`<div class="i-tel" style="color:var(--gas)"><a href="tel:${telHref}" style="color:inherit;text-decoration:none">${telExib}</a></div>`:''}
+        ${tg?`<div class="i-tel" style="color:var(--gas)"><a href="tel:${telHref}" class="tel-link" style="color:inherit;text-decoration:none">${telExib}</a></div>`:''}
         ${showLabel?`<div class="i-sub">${isBH?'Capital':'Demais localidades'}</div>`:''}
       </div>
       ${waInfo&&waInfo.num?`<div class="ib ig"><div class="i-lbl">WhatsApp</div><div class="i-tel" style="color:var(--gas)"><a href="https://wa.me/${waInfo.href}" style="color:inherit;text-decoration:none">${waInfo.num}</a></div></div>`:''}
@@ -460,13 +462,13 @@ window.selL=function selL(num){
   if(util==='agua'){
     const isCopasa=loja.agua_forn.toUpperCase().includes('COPASA');
     h+=`<div class="c-grid">
-      <div class="ib ia"><div class="i-lbl">Fornecedor</div><div class="i-val">${loja.agua_forn.toUpperCase()}</div><div class="i-tel" style="color:var(--agua)"><a href="tel:${loja.agua_tel.replace(/[^0-9+]/g,'')}" style="color:inherit;text-decoration:none">${loja.agua_tel}</a></div></div>
+      <div class="ib ia"><div class="i-lbl">Fornecedor</div><div class="i-val">${loja.agua_forn.toUpperCase()}</div><div class="i-tel" style="color:var(--agua)"><a href="tel:${loja.agua_tel.replace(/[^0-9+]/g,'')}" class="tel-link" style="color:inherit;text-decoration:none">${loja.agua_tel}</a></div></div>
       ${isCopasa?`<div class="ib ia"><div class="i-lbl">WhatsApp COPASA</div><div class="i-tel" style="color:var(--agua)"><a href="https://wa.me/5531997707000" style="color:inherit;text-decoration:none">+55 (31) 99770-7000</a></div></div>`:''}
     </div>`;
   }
 
   h+=`<div class="cemig-box" style="margin-top:4px"><h4>🚨 Plantão Mart Minas</h4>
-    <div class="c-row">📞&nbsp;<div><div class="cr-lbl">Emergências operacionais 24h</div><strong><a href="tel:+5531971619656" style="color:inherit;text-decoration:none">+55 31 97161-9656</a></strong></div></div>
+    <div class="c-row">📞&nbsp;<div><div class="cr-lbl">Emergências operacionais 24h</div><strong><a href="https://wa.me/5531971619656" class="tel-link" style="color:inherit;text-decoration:none">+55 31 97161-9656</a></strong></div></div>
   </div>`;
   h+=`<button class="btn-nova" onclick="reiniciar()">↩ Nova Ocorrência</button>`;
   document.getElementById('s4c').innerHTML=h;
